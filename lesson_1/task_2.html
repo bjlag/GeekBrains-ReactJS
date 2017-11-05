@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2</title>
+    <script>
+        'use strict';
+
+        /*
+        Написать функцию calculateArea, которая будет принимать параметры, для
+        вычисления площади (можете выбрать какую то конкретную фигуру, а можете,
+        основываясь на переданных параметрах, выполнять требуемый алгоритм
+        вычисления площади для переданной в параметрах фигуры) и возвращать объект
+        вида: { area, figure, input }, где area - вычисленная площадь, figure - название фигуры,
+        для которой вычислялась площадь, input - входные параметры, по которым было
+        произведено вычисление.
+         */
+
+        /*
+        * circle = (pi * r2) / r
+        * square = a2
+        * rectangle = a * b
+        * */
+        const calculateArea = function ( options ) {
+            const result = {
+                area: 0
+            };
+
+            if ( options.figure === 'circle' ) {
+                let { radius } = options;
+                result.area = ( Math.PI * Math.pow( radius, 2 ) ) / radius;
+            } else if ( options.figure === 'square' ) {
+                let { size } = options;
+                result.area = Math.pow( size, 2 );
+            } else if ( options.figure === 'rectangle' ) {
+                let { sizeA: a, sizeB: b } = options;
+                result.area = a * b;
+            }
+
+            result.figure = options.figure;
+            result.input = options;
+
+            return result;
+        };
+
+        // круг
+
+        let options = {
+            figure: 'circle',
+            radius: 10
+        };
+
+        let result = calculateArea( options );
+
+        console.group( 'calculateArea - Круг' );
+        console.log( 'Площадь', result.area );
+        console.log( 'Фигура', result.figure );
+        console.log( 'Входные параметры', result.input );
+        console.groupEnd();
+
+        // квадрат
+
+        options = {
+            figure: 'square',
+            size: 15
+        };
+
+        result = calculateArea( options );
+
+        console.group( 'calculateArea - Квадрат' );
+        console.log( 'Площадь', result.area );
+        console.log( 'Фигура', result.figure );
+        console.log( 'Входные параметры', result.input );
+        console.groupEnd();
+
+        // прямоугольник
+
+        options = {
+            figure: 'rectangle',
+            sizeA: 15,
+            sizeB: 12
+        };
+
+        result = calculateArea( options );
+
+        console.group( 'calculateArea - Прямоугольник' );
+        console.log( 'Площадь', result.area );
+        console.log( 'Фигура', result.figure );
+        console.log( 'Входные параметры', result.input );
+        console.groupEnd();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 4</title>
+    <script>
+        'use strict';
+
+        /*
+        При помощи генератора написать функцию - анкету, которая запрашивает у пользователя на ввод параметры и
+        передаёт их в генератор. В конце, когда генератор завершается, он должен вернуть все введённые входные
+        параметры в виде объекта. Этот объект нужно вывести в консоли.
+         */
+
+        function* generatorQuestions() {
+            const result = {},
+                questions = [
+                    'Как вас зовут?',
+                    'Сколько вам лет?',
+                    'Ваш рост?'
+                ];
+
+            for ( let i = 0; i < questions.length; i++ ) {
+                let answer = prompt( questions[ i ], '' );
+                result[ 'answer-' + i ] = answer;
+
+                yield answer;
+            }
+
+            return result;
+        }
+
+        let result,
+            isFinish,
+            generator = generatorQuestions();
+
+        while ( !isFinish ) {
+            result = generator.next();
+            if ( result.done ) isFinish = true;
+        }
+
+        console.log( result.value );
+    </script>
+</head>
+<body>
+
+</body>
+</html>

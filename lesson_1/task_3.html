@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3</title>
+    <script>
+        'use strict';
+
+        /*
+        Необходимо написать иерархию классов вида:
+        Human -> Employee -> Developer
+        Human -> Employee -> Manager
+
+        Каждый Менеджер (Manager) должен иметь внутренний массив своих сотрудников
+        (разработчиков), а также методы по удалению/добавлению разработчиков.
+
+        Каждый Разработчик (Developer) должны иметь ссылку на Менеджера и методы для
+        изменения менеджера (имеется ввиду возможность назначить другого менеджера).
+
+        У класса Human должны быть следующие параметры: name (строка), age (число),
+        dateOfBirth (строка или дата)
+
+        У класса Employee должны присутствовать параметры: salary (число), department
+        (строка)
+
+        В классе Human должен присутствовать метод displayInfo, который возвращает строку
+        со всеми параметрами экземпляра Human.
+
+        В классе Employee должен быть реализовать такой же метод (displayInfo), который
+        вызывает базовый метод и дополняет его параметрами из экземпляра Employee
+        Чтобы вызвать метод базового класса, необходимо внутри вызова метода displayInfo
+        класса Employee написать: super.displayInfo(), это вызовет метод disaplyInfo класс
+        Human и вернет строку с параметрами Human'a.
+         */
+
+        class Human {
+            constructor( name, age, dateOfBirth ) {
+                this.name = name;
+                this.age = age;
+                this.dateOfBirth = dateOfBirth;
+            }
+
+            displayInfo() {
+                return `Имя: ${this.name} | Возраст: ${this.age} | Дата рождения: ${this.dateOfBirth}`;
+            }
+        }
+
+        class Employee extends Human {
+            constructor( name, age, dateOfBirth, salary, department ) {
+                super( name, age, dateOfBirth );
+
+                this.salary = salary;
+                this.department = department;
+            }
+
+            displayInfo() {
+                return super.displayInfo() + ` | ЗП: ${this.salary} | Отдел: ${this.department}`;
+            }
+
+        }
+
+        class Developer extends Employee {
+            constructor( name, age, dateOfBirth, salary, department ) {
+                super( name, age, dateOfBirth, salary, department );
+
+                this._myManager = {};
+            }
+
+            changeManager( manager ) {
+                this._myManager = manager;
+            }
+        }
+
+        class Manager extends Employee {
+            constructor( name, age, dateOfBirth, salary, department ) {
+                super( name, age, dateOfBirth, salary, department );
+
+                this._myStaff = [];
+            }
+
+            addDeveloper( developer ) {
+                if ( this._myStaff.indexOf( developer ) !== -1 ) return false;
+
+                developer._myManager = this;
+                this._myStaff.push( developer );
+                return true;
+            }
+
+            removeDeveloper( developer ) {
+                let index = this._myStaff.indexOf( developer );
+                if ( index === -1 ) return false;
+
+                this._myStaff.splice( index, 1 );
+                return true;
+            }
+        }
+
+        const managers1 = new Manager( 'Вася', 36, new Date( 1981, 3, 15 ), 100000, 'Отдел продаж' ),
+            managers2 = new Manager( 'Костя', 26, new Date( 1991, 2, 25 ), 60000, 'Отдел продаж' ),
+            developers1 = new Developer( 'Петя', 30, new Date( 1987, 7, 21 ), 200000, 'Отдел внедрения и разработки ПО' ),
+            developers2 = new Developer( 'Сергей', 25, new Date( 1992, 6, 18 ), 250000, 'Отдел внедрения и разработки ПО' ),
+            developers3 = new Developer( 'Артем', 28, new Date( 1989, 4, 4 ), 180000, 'Отдел внедрения и разработки ПО' );
+
+        console.group( 'displayInfo менеджеры' );
+        console.log( managers1.displayInfo() );
+        console.log( managers2.displayInfo() );
+        console.groupEnd();
+
+        console.group( 'displayInfo разработчики' );
+        console.log( developers1.displayInfo() );
+        console.log( developers2.displayInfo() );
+        console.log( developers3.displayInfo() );
+        console.groupEnd();
+
+        managers1.addDeveloper( developers1 );
+        managers1.addDeveloper( developers2 );
+        managers1.addDeveloper( developers3 );
+
+        console.group( 'Массив разработчиков менеджера после добавления' );
+        console.log( managers1._myStaff );
+        console.groupEnd();
+
+        // удаление разработчика
+
+        managers1.removeDeveloper( developers2 );
+
+        console.group( 'Массив разработчиков менеджера после удаления' );
+        console.log( managers1._myStaff );
+        console.groupEnd();
+
+        // изменение менеджера
+        let oldManager = developers1._myManager;
+        developers1.changeManager( managers2 );
+
+        console.group( 'Изменение менеджера у разработчика' );
+        console.log( `Старый менеджер: ${oldManager.displayInfo()}` );
+        console.log( `Новый менеджер: ${developers1._myManager.displayInfo()}` );
+        console.groupEnd();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
