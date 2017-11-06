@@ -1,3 +1,5 @@
 const message = require( './messageModule' );
 
-message( 'Модуль вызван из index.js' );
+message( 'Вызов из index.js' );
+
+exports.message = message;
