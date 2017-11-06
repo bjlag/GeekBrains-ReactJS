@@ -3,7 +3,7 @@
 const path = require( 'path' );
 
 module.exports = {
-    entry: path.join( __dirname, 'src', 'app', 'index.js' ),
+    entry: path.join( __dirname, 'src', 'app', 'App.js' ),
     output: {
         path: path.join( __dirname, 'dist' ),
         filename: 'build.js',
@@ -11,6 +11,16 @@ module.exports = {
     },
 
     devtool: 'cheap-inline-module-source-map',
+
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            }
+        ]
+    },
 
     watch: true,
     watchOptions: {
