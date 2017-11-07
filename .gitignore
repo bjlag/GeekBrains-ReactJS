@@ -1,4 +1,4 @@
 bower_components
 node_modules
 .idea
-/lesson_2/dist/build.js
+#/lesson_2/dist/build.js
