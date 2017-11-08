@@ -1,15 +1,19 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-const StudentInfo = require( './components/StudentInfo' );
-const ClickButton = require( './components/ClickButton' );
+import StudentInfo from './components/StudentInfo';
+import ClickButton from './components/ClickButton';
 
-class App extends React.Component {
+class App extends Component {
     render() {
-        return <h1>Приложение на ReactJS</h1>;
+        return (
+            <div>
+                <h1>Приложение на ReactJS</h1>
+                <StudentInfo/>
+                <ClickButton/>
+            </div>
+        );
     }
 }
 
 ReactDOM.render( <App/>, document.getElementById( 'root' ) );
-ReactDOM.render( <StudentInfo/>, document.getElementById( 'student' ) );
-ReactDOM.render( <ClickButton/>, document.getElementById( 'button' ) );
