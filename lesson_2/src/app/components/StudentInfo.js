@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class StudentInfo extends React.Component {
+export default class StudentInfo extends Component {
     constructor() {
         super();
 
@@ -17,5 +17,3 @@ class StudentInfo extends React.Component {
         return <p>Студент: {this.student.getFullName()}</p>;
     }
 }
-
-module.exports = StudentInfo;

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class ClickButton extends React.Component {
+export default class ClickButton extends Component {
     constructor() {
         super();
     }
@@ -21,5 +21,3 @@ class ClickButton extends React.Component {
         return <button onClick={this.getFormattedDate}>Нажми</button>
     }
 }
-
-module.exports = ClickButton;
