@@ -13634,6 +13634,10 @@ body:not(.no-transition) #wrapper,
 	max-width: 500px;
 }
 
+.modal1 .heading-block h3 {
+	color: #fff;
+}
+
 .modal1 form {
 	max-width: 350px;
 }
