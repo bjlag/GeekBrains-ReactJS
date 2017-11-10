@@ -13620,3 +13620,24 @@ body:not(.no-transition) #wrapper,
 	padding:0!important
 }
 
+.modal1 > .block {
+	background: url('../images/modal1.jpg') no-repeat;
+	background-size: cover;
+	max-width: 700px;
+}
+
+.modal1 > .block > div {
+	padding: 50px;
+}
+
+.modal1 .heading-block {
+	max-width: 500px;
+}
+
+.modal1 form {
+	max-width: 350px;
+}
+
+.modal1 button {
+	margin-top:15px;
+}
