@@ -20,7 +20,7 @@ export default class BlogItem extends Component {
                 if ( item.media[0].type === 'img' ) {
                     media = <img className="image_fade" src={item.media[0].src} alt={item.media[0].alt}/>
                 } else if ( item.media[0].type === 'video' ) {
-                    media = <iframe src={item.media[0].src} width="500" height="281"/>
+                    media = <iframe src={item.media[0].src} width="500" height="281" allowFullScreen={true}/>
                 }
             } else if ( item.media.length > 1 ) {
                 media = <Slider item={item.media}/>;
