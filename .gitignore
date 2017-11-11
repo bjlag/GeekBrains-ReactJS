@@ -3,3 +3,4 @@ node_modules
 .idea
 /lesson_2/dist/build.js
 /lesson_3/donor
+/lesson_3/dist/app.js
