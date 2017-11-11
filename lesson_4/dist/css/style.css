@@ -13644,6 +13644,6 @@ body:not(.no-transition) #wrapper,
 	max-width: 350px;
 }
 
-.modal1 button {
+.modal1 button:not(.close) {
 	margin-top:15px;
 }

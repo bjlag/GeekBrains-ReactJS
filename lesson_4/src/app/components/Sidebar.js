@@ -63,7 +63,7 @@ export default class Sidebar extends Component {
                     </div>
                 </div>
 
-                <ModalWindow/>
+                <ModalWindow id={'myModal1'}/>
             </div>
         );
     }
