@@ -13634,7 +13634,9 @@ body:not(.no-transition) #wrapper,
 	max-width: 500px;
 }
 
-.modal1 .heading-block h3 {
+.modal1 p,
+.modal1 .heading-block h3,
+.modal1 .heading-block span {
 	color: #fff;
 }
 
