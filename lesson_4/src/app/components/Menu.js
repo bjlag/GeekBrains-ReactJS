@@ -1,11 +1,33 @@
 import React, { Component } from 'react';
 
 export default class Menu extends Component {
+    constructor() {
+        super( ...arguments );
+        this.state = {
+            items: this.props.items
+        };
+
+        this.onClickItemMenu = this.onClickItemMenu.bind( this );
+    }
+
+    onClickItemMenu( currentItemIndex ) {
+        let currentItems = this.state.items.map( ( item, index ) => {
+            item.current = index === currentItemIndex;
+        } );
+
+        this.setState( {
+            currentItems
+        } );
+    }
+
     render() {
-        let itemsMenu = this.props.items.map( ( item, index ) => {
-            let currentClass = ( item.current ? 'current' : '' );
+        let itemsMenu = this.state.items.map( ( item, index ) => {
             return (
-                <li className={currentClass} key={index}><a href={item.href}>{item.name}</a></li>
+                <li className={item.current ? 'current' : ''} key={index}>
+                    <a href={item.href} onClick={this.onClickItemMenu.bind( this, index )}>
+                        {item.name}
+                    </a>
+                </li>
             );
         } );
 
