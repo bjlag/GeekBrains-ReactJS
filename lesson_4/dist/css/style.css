@@ -11039,7 +11039,10 @@ label.error { display: none !important; }
 input[type=checkbox]:not(:checked) + label.error { display: block !important; }
 
 .form-control.error,
-.sm-form-control.error { border-color: #E42C3E; }
+.sm-form-control.error {
+	border-color: #E42C3E;
+	background-color: rgba(228, 44, 62, 0.4)
+}
 
 
 /* ----------------------------------------------------------------
