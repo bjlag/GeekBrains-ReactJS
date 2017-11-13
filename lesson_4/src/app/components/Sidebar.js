@@ -6,42 +6,52 @@ import ModalWindow from './ModalWindow';
 
 const tags = [
     {
+        id: 1,
         name: 'general',
         href: '#'
     },
     {
+        id: 2,
         name: 'videos',
         href: '#'
     },
     {
+        id: 3,
         name: 'music',
         href: '#'
     },
     {
+        id: 4,
         name: 'media',
         href: '#'
     },
     {
+        id: 5,
         name: 'photography',
         href: '#'
     },
     {
+        id: 6,
         name: 'parallax',
         href: '#'
     },
     {
+        id: 7,
         name: 'ecommerce',
         href: '#'
     },
     {
+        id: 8,
         name: 'terms',
         href: '#'
     },
     {
+        id: 9,
         name: 'coupons',
         href: '#'
     },
     {
+        id: 10,
         name: 'modern',
         href: '#'
     }

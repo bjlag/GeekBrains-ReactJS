@@ -4,9 +4,9 @@ import TagsItem from './TagsItem';
 
 export default class Tags extends Component {
     render() {
-        let itemsTags = this.props.items.map( ( item, index ) => {
+        let itemsTags = this.props.items.map( ( item ) => {
             return (
-                <TagsItem name={item.name} href={item.href} key={index}/>
+                <TagsItem name={item.name} href={item.href} key={item.id}/>
             );
         } );
 
