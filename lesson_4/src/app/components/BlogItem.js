@@ -28,7 +28,7 @@ export default class BlogItem extends Component {
 
 
             return (
-                <div className="entry clearfix" key={index}>
+                <div className="entry clearfix" key={item.id}>
                     <div className="entry-image">
                         {media}
                     </div>

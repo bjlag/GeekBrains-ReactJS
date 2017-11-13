@@ -5,6 +5,7 @@ import Pagination from './Pagination';
 
 const itemsBlog = [
     {
+        id: 1,
         title: 'This is a Standard post with a Preview Image',
         date: '10th Feb 2017',
         user: 'admin',
@@ -30,6 +31,7 @@ const itemsBlog = [
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod est tenetur in. Eligendi, deserunt, blanditiis est quisquam doloribus voluptate id aperiam ea ipsum magni aut perspiciatis rem voluptatibus officia eos rerum deleniti quae nihil facilis repellat atque vitae voluptatem libero at eveniet veritatis ab facere.'
     },
     {
+        id: 2,
         title: 'This is a Standard post with an Embedded Video',
         date: '16th Feb 2017',
         user: 'admin',
@@ -51,6 +53,7 @@ const itemsBlog = [
         text: 'Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusdam veritatis quisquam laboriosam esse beatae hic perferendis velit deserunt soluta iste repellendus officia in neque veniam debitis placeat quo unde reprehenderit eum facilis vitae.'
     },
     {
+        id: 3,
         title: 'This is a Standard post with a Slider Gallery',
         date: '24th Feb 2017',
         user: 'admin',
