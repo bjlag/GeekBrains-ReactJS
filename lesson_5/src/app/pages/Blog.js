@@ -13,16 +13,14 @@ export default class Blog extends Component {
         super();
 
         this.state = {
-            posts: [],
-            received: false
+            posts: []
         };
 
         axios.get( 'https://jsonplaceholder.typicode.com/posts' )
             .then( ( response ) => {
                 const { data } = response;
                 this.setState( {
-                    posts: data,
-                    received: true
+                    posts: data
                 } );
             } );
     }
@@ -35,7 +33,7 @@ export default class Blog extends Component {
                     <div className="content-wrap">
                         <div className="container clearfix">
                             <BlogContent>
-                                <Preloader show={ !this.state.received }/>
+                                <Preloader show={ !this.state.posts.length }/>
                                 <BlogItem items={ this.state.posts }/>
                                 <Pagination/>
                             </BlogContent>
