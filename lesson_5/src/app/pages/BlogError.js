@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import PageTitle from '../components/PageTitle';
 import BlogContent from '../components/BlogContent';
 import Sidebar from '../components/Sidebar';
+import BlogItem from '../components/BlogItem';
+import Pagination from '../components/Pagination';
 
 export default class Blog extends Component {
     render() {
@@ -12,7 +14,10 @@ export default class Blog extends Component {
                 <section id="content">
                     <div className="content-wrap">
                         <div className="container clearfix">
-                            <BlogContent/>
+                            <BlogContent>
+                                <BlogItem/>
+                                <Pagination/>
+                            </BlogContent>
                             <Sidebar title={'Tag cloud'}/>
                         </div>
                     </div>
