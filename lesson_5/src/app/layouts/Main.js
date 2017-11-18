@@ -7,16 +7,49 @@ import Menu from '../components/Menu';
 import MenuItem from '../components/MenuItem';
 
 export default class Main extends Component {
-    render() {
+    constructor() {
+        super( ...arguments );
 
+        this.options = {
+            logo: {
+                standard: '/images/logo.png',
+                retina: '/images/logo@2x.png',
+                alt: 'Блог'
+            },
+
+            menu: [
+                {
+                    name: 'Блог',
+                    href: '/'
+                },
+                {
+                    name: 'Блог с ошибкой',
+                    href: '/blog-error/'
+                },
+                {
+                    name: 'Портфолио',
+                    href: '/portfolio/'
+                }
+            ]
+        };
+
+        this.menuItems = this.options.menu.map( ( item, index ) => {
+            return (
+                <MenuItem href={ item.href } key={ index }>{ item.name }</MenuItem>
+            );
+        } );
+
+
+    }
+
+    render() {
         return (
             <div id="wrapper" className="clearfix">
                 <Header>
-                    <Logo srcLogoStandard={'/images/logo.png'} srcLogoRetina={'/images/logo@2x.png'} alt={'Блог'}/>
+                    <Logo srcLogoStandard={ this.options.logo.standard }
+                          srcLogoRetina={ this.options.logo.retina } alt={ this.options.logo.alt }/>
                     <Menu>
-                        <MenuItem href="/">Блог</MenuItem>
-                        <MenuItem href="/blog-error/">Блог с ошибкой</MenuItem>
-                        <MenuItem href="/portfolio/">Портфолио</MenuItem>
+                        { this.menuItems }
                     </Menu>
                 </Header>
 
