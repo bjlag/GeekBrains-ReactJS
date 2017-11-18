@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Blog from './Blog';
+import Blog from './BlogContent';
 import Sidebar from './Sidebar';
 
 export default class Content extends Component {
