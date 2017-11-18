@@ -4,10 +4,6 @@
         "href": "/"
     },
     {
-        "name": "Блог с ошибкой",
-        "href": "/blog-error/"
-    },
-    {
         "name": "Портфолио",
         "href": "/portfolio/"
     }

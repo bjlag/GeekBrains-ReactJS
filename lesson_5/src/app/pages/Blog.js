@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import PageTitle from '../components/PageTitle';
 import BlogContent from '../components/BlogContent';
 import Sidebar from '../components/Sidebar';
 import BlogItem from '../components/BlogItem';
 import Pagination from '../components/Pagination';
+import Preloader from '../components/Preloader';
 
 export default class Blog extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            posts: [],
+            received: false
+        };
+
+        axios.get( 'https://jsonplaceholder.typicode.com/posts' )
+            .then( ( response ) => {
+                const { data } = response;
+                this.setState( {
+                    posts: data,
+                    received: true
+                } );
+            } );
+    }
+
     render() {
         return (
             <div>
@@ -15,7 +35,8 @@ export default class Blog extends Component {
                     <div className="content-wrap">
                         <div className="container clearfix">
                             <BlogContent>
-                                <BlogItem/>
+                                <Preloader show={ !this.state.received }/>
+                                <BlogItem items={ this.state.posts }/>
                                 <Pagination/>
                             </BlogContent>
                             <Sidebar title={'Tag cloud'}/>
