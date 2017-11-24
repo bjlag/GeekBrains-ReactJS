@@ -26,7 +26,6 @@ export default class BlogDetail extends Component {
     }
 
     render() {
-        console.log( this.state.data.id === undefined );
         return (
             <div>
                 <PageTitle title={ this.state.data.title } description={ `Пост №${ this.state.data.id }` }/>
