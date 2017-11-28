@@ -10,6 +10,13 @@ import {
 class UsersStore extends EventEmitter {
     constructor() {
         super( ...arguments );
+
+        this.users = [];
+
+        this.fetchUsersStart = this.fetchUsersStart.bind( this );
+        this.fetchUsersEnd = this.fetchUsersEnd.bind( this );
+        this.change = this.change.bind( this );
+        this.handleActions = this.handleActions.bind( this );
     }
 
     fetchUsersStart() {
@@ -17,19 +24,30 @@ class UsersStore extends EventEmitter {
             .then( ( response ) => {
                 const { data } = response;
                 dispatcher.dispatch( {
-
+                    type: FETCH_USERS_END,
+                    payload: data
                 } );
             } );
     }
 
+    fetchUsersEnd( users ) {
+        this.users = users;
+        this.change();
+    }
+
     change() {
-        this.emit( 'change', { users: {} } )
+        this.emit( 'change', this.users );
     }
 
     handleActions( action ) {
         switch ( action.type ) {
             case FETCH_USERS_START: {
+                this.fetchUsersStart();
+                break;
+            }
 
+            case FETCH_USERS_END: {
+                this.fetchUsersEnd( action.payload );
                 break;
             }
         }
