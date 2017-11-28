@@ -8,10 +8,6 @@
         "href": "/blog/"
     },
     {
-        "name": "Комментарии",
-        "href": "/comments/"
-    },
-    {
         "name": "Пользователи",
         "href": "/users/"
     }

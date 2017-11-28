@@ -19,7 +19,6 @@ ReactDOM.render(
             <Route path="blog/" component={ Blog }>
                 <Route path=":blogId" component={ BlogDetail } />
             </Route>
-            <Route path="comments/" component={ Comments }/>
             <Route path="users/" component={ Users }/>
             <Route path="*" component={ Error404 }/>
         </Route>
