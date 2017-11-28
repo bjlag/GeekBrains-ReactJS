@@ -4,3 +4,5 @@ node_modules
 /lesson_2/dist/build.js
 /lesson_3/donor
 /lesson_?/dist/app.js
+*/npm-debug.log
+*/dist/app.js
