@@ -6,7 +6,6 @@ import Main from './layouts/Main';
 import Index from './pages/Index';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
-import Comments from './pages/Comments';
 import Users from './pages/Users';
 import Error404 from './pages/Error404';
 
