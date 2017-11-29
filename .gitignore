@@ -6,3 +6,4 @@ node_modules
 /lesson_?/dist/app.js
 */npm-debug.log
 /lesson_7_1_flux/dist/app.js
+/lesson_7_2_redux/dist/app.js
