@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+
+import { connect } from 'react-redux';
 import { fetchBlogItems } from '../actions/blogActions';
-import BlogStore from '../stores/blogStore';
 
 import PageTitle from '../components/PageTitle';
 import BlogContent from '../components/BlogContent';
@@ -9,37 +10,21 @@ import BlogItem from '../components/BlogItem';
 import Pagination from '../components/Pagination';
 import Preloader from '../components/Preloader';
 
+@connect( ( store ) => {
+    return {
+        items: store.blogItems.items,
+        isFetching: store.blogItems.isFetching
+    }
+} )
+
 export default class Blog extends Component {
     constructor() {
-        super();
+        super( ...arguments );
 
-        this.state = {
-            posts: []
-        };
-
-        this.onBlogChange = this.onBlogChange.bind( this );
-    }
-
-    onBlogChange( posts ) {
-        this.setState( {
-            posts
-        } );
-    }
-
-    componentWillMount() {
-        BlogStore.on( 'change', this.onBlogChange );
-    }
-
-    componentDidMount() {
-        fetchBlogItems();
-    }
-
-    componentWillUnmount() {
-        BlogStore.removeListener( 'change', this.onBlogChange );
+        this.props.dispatch( fetchBlogItems() );
     }
 
     render() {
-
         if ( !this.props.children ) {
             return (
                 <div>
@@ -48,8 +33,8 @@ export default class Blog extends Component {
                         <div className="content-wrap">
                             <div className="container clearfix">
                                 <BlogContent>
-                                    <Preloader show={ !this.state.posts.length }/>
-                                    <BlogItem items={ this.state.posts }/>
+                                    <Preloader show={ this.props.isFetching }/>
+                                    <BlogItem items={ this.props.items }/>
                                     <Pagination/>
                                 </BlogContent>
                                 <Sidebar title={'Tag cloud'}/>

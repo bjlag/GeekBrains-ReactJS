@@ -7,7 +7,7 @@ import PageTitle from '../components/PageTitle';
 import User from '../components/User';
 import Preloader from '../components/Preloader';
 
-@connect( (store) => {
+@connect( ( store ) => {
     return {
         users: store.users.users,
         isFetching: store.users.isFetching

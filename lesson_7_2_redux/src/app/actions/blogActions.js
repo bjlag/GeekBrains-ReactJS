@@ -1,18 +1,15 @@
-import dispatcher from '../dispatcher';
-import {
-    FETCH_BLOG_START,
-    FETCH_BLOG_DETAIL_START
-} from '../constants/blogConstants';
+import axios from 'axios';
 
 export function fetchBlogItems() {
-    dispatcher.dispatch( {
-        type: FETCH_BLOG_START
-    } );
+    return {
+        type: 'FETCH_BLOG',
+        payload: axios.get( 'https://jsonplaceholder.typicode.com/posts' )
+    };
 }
 
-export function fetchBlogDetail( id ) {
-    dispatcher.dispatch( {
-        type: FETCH_BLOG_DETAIL_START,
-        payload: id
-    } );
-}
+// export function fetchBlogDetail( id ) {
+//     dispatcher.dispatch( {
+//         type: FETCH_BLOG_DETAIL_START,
+//         payload: id
+//     } );
+// }

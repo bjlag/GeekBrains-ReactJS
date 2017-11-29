@@ -5,6 +5,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 // подключаем редюсеры
 import { usersReducer } from '../reducers/usersReducer';
+import { blogReducer } from '../reducers/blogReducer';
 
 // константа для промежуточного софта
 const middleware = applyMiddleware( promise(), logger() );
@@ -12,7 +13,7 @@ const middleware = applyMiddleware( promise(), logger() );
 // комбинируем редюсеры
 const reducers = combineReducers( {
     users: usersReducer,
-    // comment: commentReducer // подключаем дополнительные редусеры здесь
+    blogItems: blogReducer
 } );
 
 // создаем стор

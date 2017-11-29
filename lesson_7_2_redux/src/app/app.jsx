@@ -19,9 +19,9 @@ ReactDOM.render(
         <Router history={ browserHistory }>
             <Route path="/" component={ Main }>
                 <IndexRoute component={ Index }/>
-                {/*<Route path="blog/" component={ Blog }>*/}
-                    {/*<Route path=":blogId" component={ BlogDetail } />*/}
-                {/*</Route>*/}
+                <Route path="blog/" component={ Blog }>
+                    <Route path=":blogId" component={ BlogDetail } />
+                </Route>
                 <Route path="users/" component={ Users }/>
                 <Route path="*" component={ Error404 }/>
             </Route>
