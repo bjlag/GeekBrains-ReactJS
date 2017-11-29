@@ -6,10 +6,3 @@ export function fetchBlogItems() {
         payload: axios.get( 'https://jsonplaceholder.typicode.com/posts' )
     };
 }
-
-// export function fetchBlogDetail( id ) {
-//     dispatcher.dispatch( {
-//         type: FETCH_BLOG_DETAIL_START,
-//         payload: id
-//     } );
-// }

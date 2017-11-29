@@ -1,51 +1,37 @@
 import React, { Component } from 'react';
-import BlogDetailStore from '../stores/blogDetailStore';
-import { fetchBlogDetail } from '../actions/blogActions';
+
+import { connect } from 'react-redux';
+import { fetchBlogDetails } from '../actions/blogDetailsAction';
 
 import PageTitle from '../components/PageTitle';
 import BlogContent from '../components/BlogContent';
 import Sidebar from '../components/Sidebar';
 import Preloader from '../components/Preloader';
 
+@connect( ( store ) => {
+    return {
+        data: store.blogDetails.data,
+        isFetching: store.blogDetails.isFetching
+    };
+} )
+
 export default class BlogDetail extends Component {
     constructor() {
         super( ...arguments );
 
-        this.state = {
-            data: {}
-        };
-
-        this.onBlogDetailChange = this.onBlogDetailChange.bind( this );
-    }
-
-    onBlogDetailChange( data ) {
-        this.setState( {
-            data
-        } );
-    }
-
-    componentWillMount() {
-        BlogDetailStore.on( 'change', this.onBlogDetailChange );
-    }
-
-    componentDidMount() {
-        fetchBlogDetail( this.props.params.blogId );
-    }
-
-    componentWillUnmount() {
-        BlogDetailStore.removeListener( 'change', this.onBlogDetailChange );
+        this.props.dispatch( fetchBlogDetails( this.props.params.blogId ) );
     }
 
     render() {
         return (
             <div>
-                <PageTitle title={ this.state.data.title } description={ `Пост №${ this.state.data.id }` }/>
+                <PageTitle title={ this.props.data.title } description={ `Пост №${ this.props.data.id }` }/>
                 <section id="content">
                     <div className="content-wrap">
                         <div className="container clearfix">
                             <BlogContent>
-                                <Preloader show={ this.state.data.id === undefined }/>
-                                { this.state.data.body }/>
+                                <Preloader show={ this.props.isFetching }/>
+                                { this.props.data.body }/>
                             </BlogContent>
                             <Sidebar title={'Tag cloud'}/>
                         </div>
