@@ -1,47 +1,32 @@
 import React, { Component } from 'react';
-import UsersStore from '../stores/usersStore';
+
+import { connect } from 'react-redux';
 import { fetchUsers } from '../actions/usersActions';
 
 import PageTitle from '../components/PageTitle';
 import User from '../components/User';
 import Preloader from '../components/Preloader';
 
+@connect( (store) => {
+    return {
+        users: store.users.users,
+        isFetching: store.users.isFetching
+    };
+} )
+
 export default class Users extends Component {
     constructor() {
         super( ...arguments );
 
-        this.state = {
-            users: []
-        };
-
-        this.onUsersChange = this.onUsersChange.bind( this );
-    }
-
-    onUsersChange( users ) {
-        this.setState( {
-            users
-        } );
-    }
-
-    componentWillMount() {
-        UsersStore.on( 'change', this.onUsersChange )
-    }
-
-    componentDidMount() {
-        fetchUsers();
-    }
-
-    componentWillUnmount() {
-        UsersStore.removeListener( 'change', this.onUsersChange );
+        this.props.dispatch( fetchUsers() );
     }
 
     render() {
-        const usersList = this.state.users.map( ( value ) => {
+        const usersList = this.props.users.map( ( value ) => {
             return (
                 <User data={ value } key={ value.id }/>
             );
         } );
-
         return (
             <div>
                 <PageTitle title={'Пользователи'} description={'Читатели нашего блога'}/>
@@ -49,7 +34,7 @@ export default class Users extends Component {
                     <div className="content-wrap">
                         <div className="container clearfix">
                             <div className="row">
-                                <Preloader show={ !this.state.users.length }/>
+                                <Preloader show={ this.props.isFetching }/>
                                 { usersList }
                             </div>
                         </div>
