@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import MenuStore from '../stores/menuStore';
+
+import { connect } from 'react-redux';
 import { fetchMenu } from '../actions/menuActions';
 
 import Header from '../components/Header';
@@ -7,6 +8,13 @@ import Footer from '../components/Footer';
 import Logo from '../components/Logo';
 import Menu from '../components/Menu';
 import MenuItem from '../components/MenuItem';
+
+@connect( ( store ) => {
+    return {
+        menu: store.menu.menu,
+        isFetching: store.menu.isFetching
+    };
+} )
 
 export default class Main extends Component {
     constructor() {
@@ -18,33 +26,14 @@ export default class Main extends Component {
                 retina: '/images/logo@2x.png',
                 alt: 'Блог'
             },
-
             menu: []
         };
 
-        this.onMenuChange = this.onMenuChange.bind( this );
-    }
-
-    onMenuChange( menu ) {
-        this.setState( {
-            menu
-        } )
-    }
-
-    componentWillMount() {
-        MenuStore.on( 'change', this.onMenuChange )
-    }
-
-    componentDidMount() {
-        fetchMenu();
-    }
-
-    componentWillUnmount() {
-        MenuStore.removeListener( 'change', this.onMenuChange )
+        this.props.dispatch( fetchMenu() );
     }
 
     render() {
-        const menuItems = this.state.menu.map( ( item, index ) => {
+        const menuItems = this.props.menu.map( ( item, index ) => {
             return (
                 <MenuItem href={ item.href } key={ index }>{ item.name }</MenuItem>
             );
